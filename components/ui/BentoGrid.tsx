@@ -2,15 +2,16 @@
 import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 
-import Lottie from "react-lottie";
-
 import { cn } from "@/utils/cn";
 
 import animationData from "@/data/confetti.json";
 import { BackgroundGradientAnimation } from "./BackgroundGradientAnimation";
 import { GlobeDemo } from "./GridGlobe";
 import MagicButton from "./MagicButton";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 
+const LottiePlayer = dynamic(() => import("react-lottie"), { ssr: false });
 export const BentoGrid = ({
   className,
   children,
@@ -90,9 +91,11 @@ export const BentoGridItem = ({
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
         <div className="w-full h-full absolute">
           {img && (
-            <img
+            <Image
               src={img}
               alt={img}
+              width={100}
+              height={100}
               className={cn(imgClassName, "object-cover object-center ")}
             />
           )}
@@ -103,10 +106,11 @@ export const BentoGridItem = ({
           } `}
         >
           {spareImg && (
-            <img
+            <Image
               src={spareImg}
               alt={spareImg}
-              //   width={220}
+              width={100}
+              height={100}
               className="object-cover object-center w-full h-full"
             />
           )}
@@ -178,7 +182,11 @@ export const BentoGridItem = ({
                 }`}
               >
                 {/* <img src="/confetti.gif" alt="confetti" /> */}
-                <Lottie options={defaultOptions} height={200} width={400} />
+                <LottiePlayer
+                  options={defaultOptions}
+                  height={200}
+                  width={400}
+                />
               </div>
 
               <MagicButton

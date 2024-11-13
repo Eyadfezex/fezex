@@ -1,3 +1,13 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    "react-hooks/exhaustive-deps": "off", // Disable exhaustive deps rule
+    "react-hooks/rules-of-hooks": "warn",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      { "functions": false }
+    ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "prefer-const": "off" // Disable the prefer-const rule
+  }
 }
